@@ -1,7 +1,0 @@
-<div
-  *ngIf="hasTopLine"
-  [class]="'eda-card-topline ' + topLineClass"
-  [style.background]="topLineColor"></div>
-<div [class]="'eda-card ' + class" [class.no-card-topline]="!hasTopLine" [style]="style">
-  <ng-content></ng-content>
-</div>

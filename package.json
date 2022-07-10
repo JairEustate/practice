@@ -1,15 +1,12 @@
 {
-  "name": "eklipse-frontend",
-  "version": "1.0.0",
+  "name": "practice",
+  "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --port 4500",
+    "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "build-stats": "ng build --stats-json",
-    "stats": "npx webpack-bundle-analyzer dist/eklipse-frontend/stats.json",
-    "dist": "http-server dist/eklipse-frontend"
+    "test": "ng test"
   },
   "private": true,
   "dependencies": {
@@ -18,39 +15,24 @@
     "@angular/compiler": "^14.0.0",
     "@angular/core": "^14.0.0",
     "@angular/forms": "^14.0.0",
-    "@angular/material": "^14.0.0",
     "@angular/platform-browser": "^14.0.0",
     "@angular/platform-browser-dynamic": "^14.0.0",
     "@angular/router": "^14.0.0",
-    "@ngrx/store": "^14.0.1",
-    "dayjs": "^1.11.3",
-    "file-saver": "^2.0.5",
-    "highcharts-angular": "^3.0.0",
-    "http-server": "^14.1.1",
-    "jspdf": "^2.5.1",
-    "jszip": "^3.10.0",
-    "jwt-decode": "^3.1.2",
-    "lodash": "^4.17.21",
-    "ng2-charts": "^3.1.0",
-    "rxjs": "^7.5.5",
-    "xlsx": "^0.18.5",
-    "zone.js": "^0.11.5"
+    "rxjs": "~7.5.0",
+    "tslib": "^2.3.0",
+    "zone.js": "~0.11.4"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^14.0.0",
-    "@angular/cli": "^14.0.0",
+    "@angular/cli": "~14.0.0",
     "@angular/compiler-cli": "^14.0.0",
-    "@types/file-saver": "^2.0.5",
-    "@types/jasmine": "^4.0.3",
-    "@types/lodash": "^4.14.182",
-    "@types/node": "^17.0.41",
-    "jasmine-core": "^4.1.1",
-    "karma": "^6.3.20",
-    "karma-chrome-launcher": "^3.1.1",
-    "karma-coverage": "^2.2.0",
-    "karma-jasmine": "^5.0.1",
-    "karma-jasmine-html-reporter": "^2.0.0",
-    "typescript": "^4.7.3",
-    "webpack-bundle-analyzer": "^4.5.0"
+    "@types/jasmine": "~4.0.0",
+    "jasmine-core": "~4.1.0",
+    "karma": "~6.3.0",
+    "karma-chrome-launcher": "~3.1.0",
+    "karma-coverage": "~2.2.0",
+    "karma-jasmine": "~5.0.0",
+    "karma-jasmine-html-reporter": "~1.7.0",
+    "typescript": "~4.7.2"
   }
 }

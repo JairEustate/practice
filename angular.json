@@ -3,15 +3,11 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "eklipse-frontend": {
+    "practice": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
-          "style": "scss",
           "strict": true
-        },
-        "@schematics/angular:component": {
-          "style": "scss"
         }
       },
       "root": "",
@@ -21,14 +17,18 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "allowedCommonJsDependencies": ["raf", "core-js", "dayjs/locale/es"],
-            "outputPath": "dist/eklipse-frontend",
+            "outputPath": "dist/practice",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/styles.scss"],
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.css"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -36,8 +36,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "1200kb",
-                  "maximumError": "2mb"
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -68,10 +68,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "eklipse-frontend:build:production"
+              "browserTarget": "practice:build:production"
             },
             "development": {
-              "browserTarget": "eklipse-frontend:build:development"
+              "browserTarget": "practice:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -79,7 +79,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "eklipse-frontend:build"
+            "browserTarget": "practice:build"
           }
         },
         "test": {
@@ -89,18 +89,17 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
-            "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/styles.scss"],
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.css"
+            ],
             "scripts": []
           }
         }
       }
-    }
-  },
-  "defaultProject": "eklipse-frontend",
-  "schematics": {
-    "@schematics/angular:component": {
-      "skipTests": true
     }
   },
   "cli": {

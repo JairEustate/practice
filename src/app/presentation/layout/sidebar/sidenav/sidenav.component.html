@@ -21,9 +21,7 @@
       <!-- ACCORDIONS -->
       <eda-expansion-panel
         *ngIf="nav.type === 'accordion'"
-        [class.d-none]="
-          permissions.indexOf(nav.permission!) < 0 || nav.contexts!.indexOf(context) < 0
-        "
+    
       >
         <eda-expansion-panel-header
           matTooltipClass="bolder"
@@ -36,10 +34,7 @@
         </eda-expansion-panel-header>
         <div *ngFor="let route of nav.routes">
           <a
-            *ngIf="
-              permissions.indexOf(route.permission) >= 0 &&
-              route.contexts.indexOf(context) >= 0
-            "
+        
             class="sidenav-accordion-route"
             [routerLink]="route.route"
             routerLinkActive="active"

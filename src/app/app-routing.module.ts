@@ -20,65 +20,6 @@ const routes: Routes = [
     data: { preload: true },
   },
   {
-    path: `${KEYWORD_LAYOUT}/balances-enfermeria`,
-    loadChildren: () =>
-      import('./domain/modules/balances-enfermeria/balances-enfermeria.module').then(
-        m => m.BalancesEnfermeriaModule
-      ),
-    canActivate: [AuthGuard],
-    data: { preload: true },
-  },
-  {
-    path: `${KEYWORD_LAYOUT}/hospitalizacion`,
-    loadChildren: () =>
-      import('./domain/modules/hospitalizacion/hospitalizacion.module').then(
-        m => m.HospitalizacionModule
-      ),
-    canActivate: [AuthGuard],
-    data: { preload: true },
-  },
-  {
-    path: `${KEYWORD_LAYOUT}/historia-clinica`,
-    loadChildren: () =>
-      import('./domain/modules/historia-clinica/historia-clinica.module').then(
-        m => m.HistoriaClinicaModule
-      ),
-    canActivate: [AuthGuard],
-  },
-  {
-    path: `${KEYWORD_LAYOUT}/facturacion`,
-    loadChildren: () =>
-      import('./domain/modules/facturacion/facturacion.module').then(
-        m => m.FacturacionModule
-      ),
-    canActivate: [AuthGuard],
-  },
-  {
-    path: `${KEYWORD_LAYOUT}/informes-gerenciales`,
-    loadChildren: () =>
-      import('./domain/modules/informes-gerenciales/informes-gerenciales.module').then(
-        m => m.InformesGerencialesModule
-      ),
-    canActivate: [AuthGuard],
-    data: { preload: true },
-  },
-  {
-    path: `${KEYWORD_LAYOUT}/radicacion`,
-    loadChildren: () =>
-      import('./domain/modules/radicacion/radicacion.module').then(
-        m => m.RadicacionModule
-      ),
-    canActivate: [AuthGuard],
-    data: { preload: true },
-  },
-  {
-    path: `${KEYWORD_LAYOUT}/cartera`,
-    loadChildren: () =>
-      import('./domain/modules/cartera/cartera.module').then(m => m.CarteraModule),
-    canActivate: [AuthGuard],
-    data: { preload: true },
-  },
-  {
     path: 'session',
     loadChildren: () =>
       import('./domain/modules/auth/auth.module').then(m => m.AuthModule),

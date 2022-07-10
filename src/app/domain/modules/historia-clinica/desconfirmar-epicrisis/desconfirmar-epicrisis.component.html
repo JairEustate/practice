@@ -1,0 +1,51 @@
+<!-- FORMULARIO DE CONSULTA -->
+<eda-box-form
+  *ngIf="!onConsult"
+  name="Epicrisis del paciente"
+  description="Formulario para desconfirmar epicrisis"
+  predefinedGrid="medium"
+  button="Consultar pacientes"
+  [loading]="loading"
+  [formGroup]="myForm"
+  (submit)="onSubmit()"
+>
+  <div class="row">
+    <div class="col-12 col-sm-6 d-none d-sm-block">
+      <b class="form-name">Descripción del proceso</b><br />
+      <span class="form-description">
+        Digite el consecutivo de la epicrisis del paciente para realizar consulta de la
+        misma.
+      </span>
+    </div>
+    <div class="col-12 col-sm-6">
+      <eda-number-field
+        label="Numero de consecutivo"
+        formControlName="consecutivo"
+      ></eda-number-field>
+    </div>
+  </div>
+</eda-box-form>
+<!-- RESULTADOS DE CONSULTA -->
+<eda-box *ngIf="onConsult" [grids]="[12, 12, 8, 6]">
+  <div class="row overflow-hidden" *ngFor="let item of estadisticas">
+    <div class="col-12 col-sm-4 white-space-nowrap">
+      <span class="bolder">{{ item.value }}</span>
+    </div>
+    <div class="col-12 col-sm-8 overflow-ellipsis">
+      <span>{{ item.result }}</span>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="buttons">
+    <button mat-button color="warn" (click)="onCancel()">cancelar</button>
+    <button
+      mat-button
+      class="margin-left-10"
+      color="accent"
+      (click)="onDesconfirm()"
+      [disabled]="desconfirmando"
+    >
+      desconfirmar
+    </button>
+  </div>
+</eda-box>

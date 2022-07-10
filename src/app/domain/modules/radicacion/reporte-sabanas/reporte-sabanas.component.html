@@ -1,0 +1,101 @@
+<!-- FORMULARIO DE CONSULTA -->
+<eda-box-form
+  *ngIf="!onConsult"
+  name="Reporte Sabanas"
+  description="Establezca parámetros para generar consulta"
+  button="Consultar reporte"
+  [loading]="loading"
+  predefinedGrid="small"
+  [formGroup]="Form"
+  (submit)="onSubmit()"
+>
+  <eda-number-field label="Ingreso del paciente" formControlName="ingreso">
+  </eda-number-field>
+</eda-box-form>
+<!-- TABLA QUE MUESTRA ESTANCIAS DEL PACIENTE CONSULTADO -->
+<div [class.d-none]="!onConsult">
+  <span class="bolder">status del reporte: </span>{{ statusReporte }}
+  <div class="table-header">
+    <div class="container">
+      <div class="row no-padding">
+        <div class="col-12 col-sm-6 white-space-nowrap">
+          <button matTooltip="Volver" mat-icon-button (click)="backToConsult()">
+            <mat-icon>arrow_back</mat-icon>
+          </button>
+          <eda-filter-field
+            class="width-200"
+            (event)="applyFilter($event)"
+          ></eda-filter-field>
+        </div>
+        <div class="col-12 col-sm-6 white-space-nowrap">
+          <div class="align-to-right">
+            <mat-form-field class="rang-rep-field">
+              <mat-label class="bodycommerce">Rango Fecha del Reporte</mat-label>
+              <mat-date-range-input [rangePicker]="picker">
+                <input matStartDate placeholder="Inicio" [(ngModel)]="inicioReporte" />
+                <input matEndDate placeholder="Final" [(ngModel)]="finalReporte" />
+              </mat-date-range-input>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-date-range-picker #picker></mat-date-range-picker>
+            </mat-form-field>
+            <button
+              mat-raised-button
+              color="primary"
+              class="bolder"
+              [disabled]="disableGenerarReporteBtn"
+              (click)="generarReporte()"
+            >
+              Generar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- TABLA -->
+    <div class="table-elevation table-scroll-reporte-sabanas">
+      <table class="table bodycommerce" mat-table [dataSource]="dataSource">
+        <ng-container
+          *ngFor="let table of displayedColumns; let i = index"
+          [matColumnDef]="displayedColumns[i]"
+        >
+          <!-- TITULOS DE LAS COLUMNAS -->
+          <th class="th" mat-header-cell *matHeaderCellDef>
+            {{ columnsNames[i] }}
+          </th>
+          <!-- CELDAS DE LA TABLA -->
+          <td class="font-size-12" mat-cell *matCellDef="let element">
+            <div>
+              {{
+                element[displayedColumns[i]] | tableTransfromValue: displayedColumns[i]
+              }}
+              <span *ngIf="['GPANOMPAC'].indexOf(displayedColumns[i]) >= 0">
+                Documento:{{ element.GPADOCPAC }}
+              </span>
+              <span *ngIf="['HSUNOMBRE'].indexOf(displayedColumns[i]) >= 0">
+                ({{ element.HSUCODIGO }})
+              </span>
+            </div>
+          </td>
+        </ng-container>
+        <!-- FILAS DE LA TABLA -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row class="h-30" *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </div>
+
+    <mat-paginator
+      class="paginator table-elevation bodycommerce"
+      [length]="dataSource.length"
+      [pageSizeOptions]="[50]"
+      showFirstLastButtons
+      [hidePageSize]="true"
+    >
+    </mat-paginator>
+  </div>
+  <!-- ESTE COMPONENTE GENERA EL REPORTE (PDF'S COMPRIMIDOS EN UN ZIP) CUANDO SE GENERA LA ORDEN -->
+  <reporte-sabanas-pdf
+    class="d-none"
+    [data]="data"
+    *ngIf="generandoReporte"
+  ></reporte-sabanas-pdf>
+</div>

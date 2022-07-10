@@ -1,0 +1,11 @@
+.snackbar-notification {
+  font-weight: bolder !important;
+  color: var(--mat-snackbar-notification-color) !important;
+  background: var(--mat-snackbar-notification-background);
+  text-align: center !important;
+  margin: 0px;
+  .mat-simple-snackbar-action {
+    font-weight: 800;
+    color: var(--mat-snackbar-notification-action-color);
+  }
+}

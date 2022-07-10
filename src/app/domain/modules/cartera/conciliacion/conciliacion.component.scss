@@ -1,0 +1,67 @@
+.spinner-sabanas-uci {
+  max-height: 100px;
+  max-width: 100px;
+  margin: 0 auto;
+}
+
+input[type='file'] {
+  display: none;
+}
+
+.custom-file-upload {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  cursor: pointer;
+}
+
+a {
+  color: #0aa1ae;
+  &:active {
+    color: #0aa1ae;
+  }
+}
+
+.icon-search {
+  margin-top: -82px;
+  color: #0aa1ae;
+}
+
+.pdf-frame {
+  width: 100%;
+  height: 100%;
+}
+.red {
+  color: red;
+  font-weight: bolder;
+}
+.orange {
+  color: orange;
+  font-weight: bolder;
+}
+.green {
+  color: green;
+  font-weight: bolder;
+}
+.blue {
+  color: blue;
+  font-weight: bolder;
+}
+.dialog-title {
+  font-size: 18px;
+  text-align: left;
+  font-weight: bold;
+}
+.dialog-subtitle {
+  font-size: 18px;
+  text-align: left;
+  padding-top: 10px;
+  margin-left: 10px;
+  font-size: 12px;
+  font-weight: bold;
+  &::before {
+    content: '\A';
+    white-space: pre;
+  }
+}

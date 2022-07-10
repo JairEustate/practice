@@ -1,0 +1,65 @@
+/* MATERIAL */
+:root {
+  --mat-primary-100: #78cbd3;
+  --mat-primary-500: #0aa1ae;
+  --mat-primary-700: #087781;
+  --mat-accent-100: #1ee994;
+  --mat-accent-500: #16aa6d;
+  --mat-accent-700: #17775d;
+  --mat-warn-100: #ff6262;
+  --mat-warn-500: red;
+  --mat-warn-700: #a50000;
+  --mat-primary-opacity-500: #0aa0ae7c;
+  --mat-primary-opacity-700: #0cbece52;
+  --mat-snackbar-notification-action-color: var(--mat-accent-500);
+  --mat-snackbar-notification-background: #323232;
+  --mat-snackbar-notification-color: white;
+  --mat-select-panel-color: rgba(202, 202, 202);
+}
+/* COMPONENTS */
+:root {
+  --dark-color: #000000;
+  --light-color: #ffffff;
+  --mat-autofill-fill-box-shadow: #f5f5f5;
+  --mat-autofill-all-box-shadow: var(--light-color);
+  --mat-form-field-border-color-hover: rgba(202, 202, 202, 0.466);
+  --eda-box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  --eda-table-box-shadow: rgba(50, 50, 93, 0.25) 2px 3px 3px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 1px -1px;
+  --eda-box-background: var(--light-color);
+  --eda-box-form-name-color: var(--mat-primary-500);
+  --eda-box-form-description-color: var(--mat-primary-100);
+  --eda-table-header-background: var(--light-color);
+  --eda-table-top-background: #191b3c;
+  --eda-table-subcontent-color: gray;
+}
+/* DASHBOARD LAYOUT */
+:root {
+  --body-scrollbar-thumb-background: #b2b2b2;
+  --header-user-menu-hover-button: #0cbece52;
+  --header-box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.055),
+    0px 6px 10px 0px rgba(0, 0, 0, 0.055), 0px 1px 18px 0px rgba(0, 0, 0, 0.062);
+  --header-background: var(--mat-primary-500);
+  --footer-background: var(--mat-primary-500);
+  --sidebar-title-color: var(--mat-primary-500);
+  --sidebar-scrollbar-background: rgba(148, 148, 148, 0.9);
+  --sidenav-link-tooltip-background: rgba(97, 97, 97, 0.9);
+  --sidenav-accordion-tooltip-background: rgba(97, 97, 97, 0.9);
+  --header-color: var(--dark-color);
+  --footer-color: var(--dark-color);
+  --sidenav-background-hover: rgba(226, 226, 226, 0.2);
+  --sidebar-background-active: rgba(226, 226, 226, 0.46);
+  --container-background: #fafafa;
+  --sidebar-border-color: #d6d6d6;
+  --sidebar-after-background: rgb(255, 255, 255, 0.95);
+  --sidebar-toggle-button-over-body-background: rgba(0, 0, 0, 0.527);
+  --sidenav-link-color: var(--dark-color);
+  --sidenav-accordion-color: var(--dark-color);
+  --sidebar-link-background-selected: var(--sidebar-background-active);
+  --sidebar-link-background-hover: var(--sidenav-background-hover);
+  --sidebar-color: rgba(194, 194, 194, 0.36);
+  span.sidenav.ripple {
+    background-color: rgba(131, 131, 131, 0.26);
+  }
+}

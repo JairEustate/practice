@@ -1,0 +1,39 @@
+.table-scroll-reporte-sabanas {
+  width: 100%;
+  overflow: auto;
+  background: white !important;
+  max-height: calc(100vh - 270px);
+}
+table {
+  width: 100%;
+  font-family: 'bodycommerce';
+}
+.rang-rep-field {
+  background: #ffffff;
+  width: 70%;
+  height: 56px;
+  padding-left: 10px;
+  padding-right: 10px;
+  min-width: 200px;
+  width: 200px;
+}
+.gen-rep-btn {
+  background: #ffffff;
+}
+.table-elevation {
+  box-shadow: var(--eda-table-box-shadow);
+}
+.h-30 {
+  height: 30px !important;
+}
+th {
+  color: var(--dark-font-color);
+  font-weight: bolder;
+}
+.table-header {
+  background: var(--light-color);
+}
+.align-to-right {
+  float: right;
+  margin-right: 10px;
+}

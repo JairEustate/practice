@@ -1,0 +1,38 @@
+.hidden-on-usm {
+  visibility: hidden;
+}
+/* revisar interconsultas-pendientes */
+.width-on-mid-screen.under {
+  margin-top: 20px;
+}
+@media (min-width: $SM_RESOLUTION) {
+  .hidden-on-usm {
+    visibility: visible;
+  }
+}
+@media (min-width: $MD_RESOLUTION) {
+  /* revisar interconsultas-pendientes */
+  .mid-screen.shared {
+    display: flex;
+    justify-content: space-between;
+  }
+  .width-on-mid-screen {
+    width: 48%;
+  }
+  .width-on-mid-screen.under {
+    margin-top: 0 !important;
+  }
+  /* revisar interconsultas-pendientes */
+  .width-on-mid-screen.under {
+    margin-top: 0px;
+  }
+}
+@media (min-width: $LG_RESOLUTION) {
+  /**/
+}
+@media (min-width: $XL_RESOLUTION) {
+  /**/
+}
+@media (min-width: $XXL_RESOLUTION) {
+  /**/
+}

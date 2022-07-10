@@ -1,0 +1,65 @@
+:root {
+  --white: rgba(255, 255, 255, 1);
+  --black: rgba(0, 0, 0, 1);
+  --red: rgba(255, 0, 0, 1);
+  --orange: rgba(255, 165, 0, 1);
+  --blue: rgba(0, 120, 215, 1);
+  --gray: rgba(128, 128, 128, 1);
+  --yellow: rgba(216, 216, 0, 1);
+  --violet: rgba(178, 26, 108, 1);
+  --green: rgb(0, 128, 0, 1);
+}
+.white {
+  color: var(--white) !important;
+}
+.bg-white {
+  background: var(--white) !important;
+}
+.black {
+  color: var(--black) !important;
+}
+.bg-black {
+  background: var(--black) !important;
+}
+.red {
+  color: var(--red) !important;
+}
+.bg-red {
+  background: var(--red) !important;
+}
+.orange {
+  color: var(--orange) !important;
+}
+.bg-orange {
+  background: var(--orange) !important;
+}
+.blue {
+  color: var(--blue) !important;
+}
+.bg-blue {
+  background: var(--blue) !important;
+}
+.gray {
+  color: var(--gray) !important;
+}
+.bg-gray {
+  background: var(--gray) !important;
+}
+.yellow {
+  color: var(--yellow) !important;
+}
+.bg-yellow {
+  background: var(--yellow) !important;
+}
+.violet {
+  color: var(--violet) !important;
+}
+.bg-violet {
+  background: var(--violet) !important;
+}
+.green {
+  color: var(--green) !important;
+}
+.bg-green {
+  background: var(--green) !important;
+}

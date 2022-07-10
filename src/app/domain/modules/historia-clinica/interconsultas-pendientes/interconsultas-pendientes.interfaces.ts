@@ -1,0 +1,34 @@
+export interface InterconsultaI {
+  ACACODIGO: string;
+  ACANOMBRE: string;
+  ADNCENATE: number;
+  ADNINGRESO: number;
+  AINCONSEC: number;
+  AINESTADO: number;
+  DIACODIGO: any;
+  DIANOMBRE: any;
+  GASNOMBRE: string;
+  GEEDESCRI: string;
+  GENARESER: number;
+  GENDIAGNO: any;
+  GENESPECI: number;
+  GENPACIEN: number;
+  HCACODIGO: string;
+  HCANOMBRE: string;
+  HCICONSEC: number;
+  HCIMOTIVO: string;
+  HCIREGSUS: boolean;
+  HCNFECFOL: string;
+  HCNFOLIO: number;
+  HCNINTERC: number;
+  HCNINTERR: any;
+  HCTIPINTER: number;
+  HPNDEFCAM: number;
+  HPNSUBGRU: number;
+  HSUCODIGO: string;
+  HSUNOMBRE: string;
+  PACDOCUME: string;
+  PACGNEDAD: number;
+  PACGNSEXO: number;
+  PACNOMBRE: string;
+}

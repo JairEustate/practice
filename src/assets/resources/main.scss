@@ -1,0 +1,41 @@
+/*!
+ * Resources
+ * @license MIT
+ * Author: Ejdao
+ * Created: 27/05/2022
+ */
+@import 'constants';
+@import 'grids';
+@import 'responsive';
+@import 'utilities';
+body {
+  font-family: 'titlecommerce';
+  margin: 0;
+}
+a,
+a:hover {
+  text-decoration: none;
+  outline: 0;
+}
+button {
+  cursor: pointer;
+  border: none;
+}
+body.layout {
+  *::-webkit-scrollbar {
+    background: transparent;
+    width: 0.3em;
+  }
+  *::-webkit-scrollbar:horizontal {
+    background: transparent;
+    height: 0.3em !important;
+  }
+  *::-webkit-scrollbar-thumb {
+    background: var(--body-scrollbar-thumb-background);
+    border-radius: 10px;
+  }
+}
+body.accesscontrol {
+  overflow-x: hidden;
+  overflow-y: hidden;
+}

@@ -1,0 +1,37 @@
+<div>
+  <div class="row no-padding" style="padding: 10px">
+    <div class="col-9 overflow-ellipsis">
+      <span class="dialog-title mat-primary-500 white-space-nowrap" cdkFocusInitial>
+        {{ data.GENTERCER }}</span
+      >
+      <span class="dialog-subtitle mat-primary-100"
+        >Fecha Gestión: {{ data.FECHA | date }}</span
+      >
+    </div>
+    <div class="col-3">
+      <div class="float-right">
+        <button mat-icon-button (click)="onEdit()"><mat-icon>edit</mat-icon></button>
+        <button mat-icon-button (click)="onDelete()" *ngIf="canDelete">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="row">
+    <div class="col-12 col-sm-6 bolder">Resp. Tercero:</div>
+    <div class="col-12 col-sm-6">{{ data.RESPTERC }}</div>
+    <div class="col-12 col-sm-6 bolder">Tel. Tercero:</div>
+    <div class="col-12 col-sm-6">{{ data.TELEFTERC }}</div>
+    <div class="col-12 col-sm-6 bolder">Motivo Llamada:</div>
+    <div class="col-12 col-sm-6">{{ data.MOTLLAMAD }}</div>
+    <div class="col-12 col-sm-6 bolder" *ngIf="data.FECHCONCI !== null">
+      Fecha Conciliación:
+    </div>
+    <div class="col-12 col-sm-6" *ngIf="data.FECHCONCI !== null">
+      {{ data.FECHCONCI | date }}
+    </div>
+    <div class="col-12 col-sm-6 bolder">Observaciones:</div>
+    <div class="col-12 col-sm-6">{{ data.OBSERVACION }}</div>
+  </div>
+</div>

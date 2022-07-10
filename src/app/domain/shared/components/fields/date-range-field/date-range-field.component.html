@@ -1,0 +1,17 @@
+<div class="mat-form-container">
+  <mat-form-field [appearance]="appearance" [color]="color">
+    <mat-label>{{ label }} <span *ngIf="required">*</span></mat-label>
+    <mat-date-range-input [rangePicker]="picker">
+      <input matStartDate [placeholder]="startPlaceholder" [formControl]="start" />
+      <input matEndDate [placeholder]="endPlaceholder" [formControl]="end" />
+    </mat-date-range-input>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-date-range-picker #picker></mat-date-range-picker>
+  </mat-form-field>
+  <eda-custom-error
+    [start]="start"
+    [end]="end"
+    *ngIf="(start.invalid || end.invalid) && (start.touched || end.touched)"
+  >
+  </eda-custom-error>
+</div>

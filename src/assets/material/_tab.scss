@@ -1,0 +1,8 @@
+.mat-tab-label:active,
+.mat-tab-label.mat-tab-label-active {
+  color: var(--mat-accent-500);
+}
+mat-tab-group {
+  height: 100%;
+  overflow-y: auto;
+}

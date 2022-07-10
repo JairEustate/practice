@@ -1,0 +1,12 @@
+<div class="align-center">
+  <span class="bolder">{{ description }}</span>
+  <canvas
+    style="max-height: 280px"
+    baseChart
+    [datasets]="data"
+    [labels]="labels"
+    [options]="barChartOptions"
+    [legend]="barChartLegend"
+  >
+  </canvas>
+</div>

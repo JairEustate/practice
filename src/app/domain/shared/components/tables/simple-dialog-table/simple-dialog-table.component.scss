@@ -1,0 +1,28 @@
+.excel-icon {
+  width: 32px;
+}
+table {
+  width: 100%;
+  font-family: 'bodycommerce';
+}
+.table-scroll {
+  overflow: auto;
+  max-height: calc(50vh);
+}
+.h-20 {
+  height: 20px !important;
+}
+.unlined-row .mat-cell {
+  border-bottom: 1px solid transparent !important;
+  border-top: 1px solid transparent !important;
+}
+th {
+  color: var(--dark-font-color);
+  font-weight: bolder;
+}
+td {
+  font-size: 12px;
+}
+.filter-field {
+  max-width: 210px;
+}

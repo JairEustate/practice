@@ -1,27 +1,24 @@
-# Practice
+# EklipseFrontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.0.
+Este proyecto fue generado con [Angular CLI](https://github.com/angular/angular-cli) version 14.0.0.
 
-## Development server
+El proyecto fue iniciado originalmente el 27/Enero/2022, El repositorio original fue descartado
+debido a la mala organización del repositorio en git, por tal motivo se decidió continuar en este para tener un mejor control de versiones, descartando así el versionamiento anterior en su totalidad.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+# Init (27/Ene/22)
 
-## Code scaffolding
+Inicio del proyecto.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Se agregan los siguientes comandos :
 
-## Build
+`build-stats` : Genera una compilación con archivo json que contiene estadisticas del uso de los paquetes en cada modulo.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+`stats` : Genera una página web local en la cual puedes ver las estadisticas generadas con el comando anteriot de forma grafíca.
 
-## Running unit tests
+`dist` : Genera un servidor en el cual se ejecutará la compilación destinada a producción en un entorno local para testearla antes de ponerla oficialmente en producción.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+# v1.0.0 (08/Jul/22)
 
-## Running end-to-end tests
+Se establece la configuración inicial del proyecto proveniente del repositorio anterior.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Modulos agregados : `auth`, `dashboard`, `seguridad`, `balances-enfermeria`, `hospitalizacion`, `facturacion`, `historia-clinica`, `informes-gerenciales`, `radicacion`, `cartera`.

@@ -1,0 +1,18 @@
+@import '../layout.common.scss';
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--footer-background);
+  color: var(--footer-color);
+  height: var(--footer-height);
+  font-weight: bolder;
+  z-index: 997;
+  width: 100%;
+  & .left {
+    margin-left: 10px;
+  }
+  & .right {
+    margin-right: 10px;
+  }
+}

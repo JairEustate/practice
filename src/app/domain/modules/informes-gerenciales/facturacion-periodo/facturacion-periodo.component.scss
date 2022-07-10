@@ -1,0 +1,29 @@
+.td {
+  text-align: right !important;
+}
+.align-left {
+  text-align: left !important;
+}
+.align-right {
+  text-align: right !important;
+}
+.lineheight3 {
+  line-height: 3px;
+}
+.capitalize {
+  & div button {
+    text-transform: uppercase !important;
+    font-weight: bolder;
+  }
+}
+.info-btn {
+  font-weight: bolder;
+  margin-bottom: 10px;
+}
+.spinner-on-center {
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 280px;
+}

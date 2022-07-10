@@ -1,0 +1,20 @@
+<div class="permisos-container">
+  <div *ngFor="let permiso of permisos; let i = index">
+    <div *ngIf="permiso.tipo === 'modulo'">
+      <div class="bolder">{{ permiso.nombre }}</div>
+    </div>
+    <div *ngIf="permiso.tipo === 'permiso'">
+      <mat-checkbox
+        [checked]="permisosSeleccionados.indexOf(permiso.codigo) >= 0"
+        (change)="addPermisosToUsuario($event.checked, permiso.codigo)"
+      >
+        {{ permiso.nombre }}
+      </mat-checkbox>
+    </div>
+  </div>
+</div>
+<div class="buttons-container">
+  <button class="bolder" (click)="onSetPermisos()" mat-button color="accent">
+    ASIGNAR PERMISOS
+  </button>
+</div>

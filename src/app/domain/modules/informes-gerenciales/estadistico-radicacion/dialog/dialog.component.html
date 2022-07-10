@@ -1,0 +1,139 @@
+<!-- TABLA -->
+<div>
+  <button *ngIf="onConsult" mat-icon-button (click)="back()">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  <button mat-icon-button matTooltip="Generar Reporte" (click)="generarReporte()">
+    <img class="excel-icon" src="assets/images/icons/export-excel.png" />
+  </button>
+  <span class="bolder black m10-left">{{ description }}</span>
+</div>
+<div class="row">
+  <div class="col-9 col-sm-6 margin-bottom-10">
+    <div style="width: 200px">
+      <div style="margin-left: -5px">
+        <eda-filter-field (event)="applyFilter($event)"></eda-filter-field>
+      </div>
+      <mat-form-field *ngIf="data.key === 6" class="mw100" style="margin-left: 5px">
+        <mat-label>Eps</mat-label>
+        <input
+          [formControl]="filtered"
+          matInput
+          type="text"
+          (keyup)="filtrar()"
+          class="black"
+          [matAutocomplete]="auto"
+        />
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option
+            *ngFor="let option of EpsFiltered.slice(0, 6)"
+            class="subgrupo-options"
+            [value]="option"
+            (click)="onClick(option)"
+          >
+            {{ option }}
+          </mat-option>
+        </mat-autocomplete>
+        <button
+          *ngIf="filtered.value"
+          type="button"
+          (click)="onClear()"
+          mat-button
+          matSuffix
+          mat-icon-button
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="col-12 col-sm-2 margin-bottom-10">
+    <eda-month-field [class.d-none]="data.key !== 6" label="mes" [formcontrol]="month">
+    </eda-month-field>
+  </div>
+  <div class="col-12 col-sm-2 margin-bottom-10">
+    <eda-year-field [class.d-none]="data.key !== 6" label="año" [formcontrol]="year">
+    </eda-year-field>
+  </div>
+  <div class="col-3 col-sm-2 margin-bottom-10">
+    <div [class.d-none]="data.key !== 6">
+      <button mat-icon-button matTooltip="Traer Todos" (click)="bringOldData()">
+        <mat-icon>density_small</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="table-elevation table-scroll-radicacion-facturacion">
+  <table class="table bodycommerce" mat-table [dataSource]="dataSource" matSort>
+    <ng-container
+      *ngFor="let table of displayedColumns; let i = index"
+      [matColumnDef]="displayedColumns[i]"
+    >
+      <!-- TITULOS DE LAS COLUMNAS -->
+      <th
+        mat-header-cell
+        class="bodycommerce black bolder"
+        [ngClass]="{
+          facto: (['', columnsNames[i]] | tableValueToCompare) === 1,
+          radto: (['', columnsNames[i]] | tableValueToCompare) === 2,
+          radi: (['', columnsNames[i]] | tableValueToCompare) === 3,
+          anu: (['', columnsNames[i]] | tableValueToCompare) === 4
+        }"
+        *matHeaderCellDef
+        mat-sort-header
+      >
+        {{ columnsNames[i] }}
+      </th>
+      <th>
+        <!-- CELDAS DE LA TABLA -->
+      </th>
+
+      <td
+        class="td font-size-10"
+        [style.width.px]="rowWidthsInPx[i]"
+        [style.min-width.px]="rowWidthsInPx[i]"
+        [ngClass]="{
+          bolder: columnsNames[i] === 'Nombre',
+          facto: (['', columnsNames[i]] | tableValueToCompare) === 1,
+          radto: (['', columnsNames[i]] | tableValueToCompare) === 2,
+          radi: (['', columnsNames[i]] | tableValueToCompare) === 3,
+          anu: (['', columnsNames[i]] | tableValueToCompare) === 4,
+          blue: (['', columnsNames[i]] | tableValueToCompare) === 5
+        }"
+        mat-cell
+        *matCellDef="let element"
+      >
+        {{ element[displayedColumns[i]] | tableTransfromValue: displayedColumns[i] }}
+      </td>
+      <!-- FOOTER DE LA TABLA -->
+      <td class="bolder" mat-footer-cell *matFooterCellDef>
+        <div *ngIf="data.key !== 4 && data.key !== 5">
+          <div *ngIf="['Nombre'].indexOf(columnsNames[i]) >= 0">TOTAL</div>
+          <div *ngIf="['Factura'].indexOf(columnsNames[i]) >= 0">TOTAL</div>
+          <div>
+            {{ displayedColumns[i] | SumTableValues: dataSource.filteredData }}
+          </div>
+        </div>
+      </td>
+    </ng-container>
+    <!-- Filas de la tabla -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr
+      mat-row
+      class="unlined-row h-20"
+      [class.selectable-row]="canBeSelect"
+      *matRowDef="let row; columns: displayedColumns"
+      (click)="onSelectRow(row)"
+    ></tr>
+    <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+  </table>
+</div>
+<mat-paginator
+  class="paginator"
+  [length]="dataSource.length"
+  [pageSizeOptions]="[30]"
+  showFirstLastButtons
+  [hidePageSize]="true"
+>
+</mat-paginator>

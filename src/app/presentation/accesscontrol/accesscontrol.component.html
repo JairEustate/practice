@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row no-padding">
+    <div class="d-none d-md-block col-md-6 col-xl-8">
+      <div class="container-top">
+        <div class="app-information-container">
+          <h1>Eklipse</h1>
+          <h4 class="app-information-description">
+            Una plataforma innovadora, de fácil uso, que ofrece funcionalidades y
+            soluciones completas para realizar procesos complementarios en Grupo Clínica
+            Médicos.
+            <br />
+            <br />
+            Esta plataforma aprovecha el paradigma de la computación en la nube, que nos
+            permite trabajar desde cualquier lugar donde exista una conexión a internet.
+          </h4>
+        </div>
+      </div>
+      <div class="img-container">
+        <img src="assets/images/marca-agua/aguachica.svg" />
+        <img src="assets/images/marca-agua/alta-centro.svg" />
+        <img src="assets/images/marca-agua/sanjuan.svg" />
+        <img src="assets/images/marca-agua/valledupar.svg" />
+      </div>
+    </div>
+    <div class="col-12 col-md-6 col-xl-4">
+      <div class="router-outlet-container">
+        <div class="router-outlet">
+          <img src="assets/images/accesscontrol/logo.png" />
+          <router-outlet></router-outlet>
+          <div class="form-footer">
+            {{ app.name }} v{{ app.version }} ({{ app.released }}) {{ app.company }}
+            <br />
+            Copyright © {{ app.creation }} - Todos los derechos reservados
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

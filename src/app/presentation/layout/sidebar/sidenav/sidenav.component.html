@@ -1,0 +1,61 @@
+<div id="sidenav" class="sidenav-container titlecommerce">
+  <eda-accordion>
+    <div class="sidenav" *ngFor="let nav of sideNav">
+      <!-- LINKS -->
+      <a
+        *ngIf="nav.type === 'link'"
+        class="sidenav-accordion-route"
+        [matTooltip]="sidebarHidden && midHidden ? nav.title : ''"
+        matTooltipPosition="before"
+        [routerLink]="nav.route"
+        routerLinkActive="active"
+        (click)="mobileQuery.matches ? toggleSidebar() : ''"
+      >
+        <button>
+          <img [src]="nav.icon" />
+          <span class="overflow-ellipsis">
+            {{ nav.title }}
+          </span>
+        </button>
+      </a>
+      <!-- ACCORDIONS -->
+      <eda-expansion-panel
+        *ngIf="nav.type === 'accordion'"
+        [class.d-none]="
+          permissions.indexOf(nav.permission!) < 0 || nav.contexts!.indexOf(context) < 0
+        "
+      >
+        <eda-expansion-panel-header
+          matTooltipClass="bolder"
+          [matTooltip]="sidebarHidden && midHidden ? nav.title : ''"
+          matTooltipPosition="before"
+        >
+          <span class="sidenav-accordion-title overflow-ellipsis">
+            {{ nav.title }}
+          </span>
+        </eda-expansion-panel-header>
+        <div *ngFor="let route of nav.routes">
+          <a
+            *ngIf="
+              permissions.indexOf(route.permission) >= 0 &&
+              route.contexts.indexOf(context) >= 0
+            "
+            class="sidenav-accordion-route"
+            [routerLink]="route.route"
+            routerLinkActive="active"
+            [matTooltip]="sidebarHidden && midHidden ? route.title : ''"
+            (click)="mobileQuery.matches ? toggleSidebar() : ''"
+            matTooltipPosition="before"
+          >
+            <button>
+              <img [src]="route.icon" />
+              <span class="overflow-ellipsis">
+                {{ route.title }}
+              </span>
+            </button>
+          </a>
+        </div>
+      </eda-expansion-panel>
+    </div>
+  </eda-accordion>
+</div>

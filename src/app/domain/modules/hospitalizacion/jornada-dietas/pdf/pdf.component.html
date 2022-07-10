@@ -1,0 +1,120 @@
+<div #content class="w-a4">
+  <div>
+    <div class="word-spacing-2 lucida float-left">
+      <b>{{ title }}</b
+      ><br />
+      <b class="word-spacing-2 lucida" *ngIf="!isCatalogo"
+        >Codigo: {{ combinaciones[0].JORNADA }}<br
+      /></b>
+      <b class="word-spacing-2 lucida">Fecha: {{ date }}</b
+      ><br />
+    </div>
+    <b class="word-spacing-2 float-right">Generado el {{ today }}</b>
+  </div>
+  <table mat-table [dataSource]="dataSource">
+    <ng-container
+      *ngFor="let table of displayedColumns; let i = index"
+      [matColumnDef]="displayedColumns[i]"
+    >
+      <th
+        class="word-spacing-2"
+        [class.fw-100]="['Fecha'].indexOf(columnNames[i]) >= 0"
+        [class.fw-120]="['CODIGO'].indexOf(displayedColumns[i]) >= 0"
+        [class.fw-220]="['CENTRO_ATENCION'].indexOf(displayedColumns[i]) >= 0"
+        *matHeaderCellDef
+        mat-header-cell
+      >
+        {{ columnNames[i] }}
+      </th>
+      <th></th>
+      <td
+        class="align-left"
+        [class.fw-80]="
+          ['CAMA', 'JORNADA', 'JORNADA_DIETA'].indexOf(displayedColumns[i]) >= 0
+        "
+        [class.fw-100]="
+          ['FECHA_REPORTE', 'VALOR_JORNADA'].indexOf(displayedColumns[i]) >= 0
+        "
+        [class.fw-120]="['CODIGO', 'TOTAL_PACIENTES'].indexOf(displayedColumns[i]) >= 0"
+        [class.fw-140]="['CONSISTENCIA_DIETA'].indexOf(displayedColumns[i]) >= 0"
+        [class.fw-200]="['PACIENTE'].indexOf(displayedColumns[i]) >= 0"
+        [class.fw-225]="['CENTRO_ATENCION'].indexOf(displayedColumns[i]) >= 0"
+        [class.fw-250]="['TIPO_DIETA'].indexOf(displayedColumns[i]) >= 0"
+        *matCellDef="let element"
+        mat-cell
+      >
+        <b
+          class="line-height-3 word-spacing-2 normal font-size-8"
+          [ngClass]="{
+            'margin-left-10 margin-right-10': ['Cama'].indexOf(displayedColumns[i]) >= 0
+          }"
+        >
+          {{ element[displayedColumns[i]] | tableTransfromValue: displayedColumns[i] }}
+        </b>
+      </td>
+
+      <td mat-footer-cell *matFooterCellDef>
+        <b
+          *ngIf="['CODIGO', 'CAMA'].indexOf(displayedColumns[i]) >= 0"
+          class="float-left font-size-9"
+          >TOTAL
+        </b>
+        <b
+          *ngIf="['VALOR_DIETA', 'VALOR_JORNADA'].indexOf(displayedColumns[i]) >= 0"
+          class="float-left font-size-9"
+        >
+          {{ displayedColumns[i] | SumTableValues: dataSource }}
+        </b>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr
+      class="unlined-row height-3"
+      mat-row
+      *matRowDef="let row; columns: displayedColumns"
+    ></tr>
+    <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+  </table>
+
+  <table mat-table [dataSource]="combinaciones">
+    <ng-container
+      *ngFor="let table of displayedColumnsCombinaciones; let i = index"
+      [matColumnDef]="displayedColumnsCombinaciones[i]"
+    >
+      <th class="word-spacing-2" mat-header-cell *matHeaderCellDef>
+        {{ columnNamesCombinaciones[i] }}
+      </th>
+      <th></th>
+      <td
+        class="align-left"
+        [class.fw-100]="['CANTIDAD'].indexOf(displayedColumnsCombinaciones[i]) >= 0"
+        [class.fw-250]="['TIPO'].indexOf(displayedColumnsCombinaciones[i]) >= 0"
+        [class.fw-120]="
+          ['VALOR', 'CONSISTENCIA'].indexOf(displayedColumnsCombinaciones[i]) >= 0
+        "
+        mat-cell
+        *matCellDef="let element"
+      >
+        <b class="line-height-3 word-spacing-2 normal font-size-8">
+          {{
+            element[displayedColumnsCombinaciones[i]]
+              | tableTransfromValue: displayedColumnsCombinaciones[i]
+          }}
+        </b>
+      </td>
+
+      <td mat-footer-cell *matFooterCellDef>
+        <b class="float-left font-size-9">
+          {{ displayedColumnsCombinaciones[i] | SumTableValues: combinaciones }}
+        </b>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumnsCombinaciones"></tr>
+    <tr
+      class="unlined-row height-3"
+      mat-row
+      *matRowDef="let row; columns: displayedColumnsCombinaciones"
+    ></tr>
+    <tr mat-footer-row *matFooterRowDef="displayedColumnsCombinaciones"></tr>
+  </table>
+</div>

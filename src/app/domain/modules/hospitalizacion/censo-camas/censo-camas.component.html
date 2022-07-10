@@ -1,0 +1,45 @@
+<!-- TOP DE LA TABLA -->
+<eda-top-table [name]="title" [description]="gruposText + camasText">
+  <button
+    *ngIf="onVisualizeGrupoCamas"
+    [matTooltip]="lastUpdated"
+    mat-icon-button
+    (click)="inicialize()"
+  >
+    <mat-icon>refresh</mat-icon>
+  </button>
+  <button
+    *ngIf="!onVisualizeCamas"
+    matTooltip="Listar Camas"
+    (click)="showCamas()"
+    mat-icon-button
+  >
+    <mat-icon>bed</mat-icon>
+  </button>
+  <button
+    *ngIf="!onVisualizeGrupoCamas"
+    matTooltip="Volver"
+    (click)="showingGrupoCamas ? backToGruposCamas() : ''"
+    (click)="!showingSubgrupoCamas ? backToGruposCamas() : backToSubgruposCamas()"
+    mat-icon-button
+  >
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+</eda-top-table>
+<!-- TABLA -->
+<eda-datatable
+  [displayedColumns]="displayedColumns"
+  [columnNames]="columnNames"
+  [hasFooterRow]="true"
+  [showTotalOnFooterRow]="showTotalOnFooterRow"
+  [hasRefreshButton]="false"
+  [hasExportExcelButton]="true"
+  [loading]="loading"
+  [columnResalted]="columnResalted"
+  [rowWidthsInPx]="rowWidthsInPx"
+  [rowsHasSubcontent]="['GPANOMPAC', 'GDENOMBRE']"
+  [rowsSubcontent]="[{ title: 'Documento', row: 'GPADOCPAC' }, { row: 'ACANOMBRE' }]"
+  [hasSelectableRows]="onVisualizeGrupoCamas"
+  (selectRow)="onVisualizeGrupoCamas ? getSubgrupoCamas($event) : ''"
+>
+</eda-datatable>

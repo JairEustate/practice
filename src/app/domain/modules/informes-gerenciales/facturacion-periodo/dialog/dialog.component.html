@@ -1,0 +1,100 @@
+<!-- TABLA -->
+<div>
+  <button *ngIf="onConsult" mat-icon-button (click)="back()">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  <button mat-icon-button matTooltip="Generar Reporte" (click)="generarReporte()">
+    <img class="excel-icon" src="assets/images/icons/export-excel.png" />
+  </button>
+  <span class="bolder black margin-left-10">{{ description }}</span>
+</div>
+<div class="row">
+  <div class="col-9 col-sm-6 margin-bottom-10">
+    <div class="width-200">
+      <div style="margin-left: -5px">
+        <eda-filter-field (event)="applyFilter($event)"></eda-filter-field>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-sm-2 margin-bottom-10"></div>
+  <div class="col-12 col-sm-2 margin-bottom-10"></div>
+  <div class="col-3 col-sm-2 margin-bottom-10"></div>
+</div>
+
+<div class="table-elevation table-scroll-radicacion-facturacion">
+  <table class="table" mat-table [dataSource]="dataSource" matSort [hidden]="loading">
+    <ng-container
+      *ngFor="let table of displayedColumns; let i = index"
+      [matColumnDef]="displayedColumns[i]"
+    >
+      <!-- TITULOS DE LAS COLUMNAS -->
+      <th class="bolder black" mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ columnsNames[i] }}
+      </th>
+      <td class="td" mat-cell *matCellDef="let element">
+        {{ element[displayedColumns[i]] | tableTransfromValue: displayedColumns[i] }}
+      </td>
+      <!-- FOOTER DE LA TABLA -->
+      <td
+        class="bolder"
+        [style.width.px]="rowWidthsInPx[i]"
+        [style.min-width.px]="rowWidthsInPx[i]"
+        mat-footer-cell
+        *matFooterCellDef
+      >
+        <div>
+          <div *ngIf="['NOMBRE'].indexOf(displayedColumns[i]) >= 0" class="d-gray">
+            TOTAL
+          </div>
+          <div
+            *ngIf="
+              [
+                'PRODUCCION',
+                'CANTIDADREFACTURADA',
+                'DOCUMENTOS',
+                'FACTURASANULADAS'
+              ].indexOf(displayedColumns[i]) >= 0
+            "
+            class="d-gray"
+          >
+            {{ displayedColumns[i] | SumTableValues: dataSource.filteredData }}
+          </div>
+          <div
+            *ngIf="['TOTALFACTURASANULADAS'].indexOf(displayedColumns[i]) >= 0"
+            class="d-red"
+          >
+            {{ displayedColumns[i] | SumTableValues: dataSource.filteredData }}
+          </div>
+          <div
+            *ngIf="['TOTALREFACTURADA'].indexOf(displayedColumns[i]) >= 0"
+            class="d-orange"
+          >
+            {{ displayedColumns[i] | SumTableValues: dataSource.filteredData }}
+          </div>
+          <div *ngIf="['FACTURADO'].indexOf(displayedColumns[i]) >= 0" class="d-green">
+            {{ displayedColumns[i] | SumTableValues: dataSource.filteredData }}
+          </div>
+        </div>
+      </td>
+    </ng-container>
+    <!-- FILAS DE LA TABLA -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr
+      mat-row
+      class="unlined-row h-20"
+      [class.selectable-row]="canBeSelect"
+      *matRowDef="let row; columns: displayedColumns"
+      (click)="onSelectRow(row)"
+    ></tr>
+    <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+  </table>
+  <eda-progress-bar *ngIf="loading"></eda-progress-bar>
+</div>
+<mat-paginator
+  class="paginator"
+  [length]="dataSource.length"
+  [pageSizeOptions]="[30]"
+  showFirstLastButtons
+  [hidePageSize]="true"
+>
+</mat-paginator>

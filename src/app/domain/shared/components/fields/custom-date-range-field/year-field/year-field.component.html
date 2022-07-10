@@ -1,0 +1,13 @@
+<div class="form-field">
+  <input
+    type="text"
+    (click)="onClick()"
+    (focus)="onFocus()"
+    [formControl]="formcontrol"
+    class="empty"
+    #input
+  />
+  <label (click)="onClick()">
+    {{ label }}
+  </label>
+</div>

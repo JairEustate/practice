@@ -1,0 +1,180 @@
+<!-- HEADER DE LA TABLA -->
+<button
+  mat-icon-button
+  [matTooltip]="showGraphs ? 'Ver tabla' : 'Ver Graficas'"
+  class="m10-left"
+  *ngIf="!onCreateView"
+  (click)="onShowGraphs()"
+>
+  <mat-icon>{{ showGraphs ? 'table_rows' : 'pie_chart' }}</mat-icon>
+</button>
+<!-- BUTTON 'AGREGAR' -->
+<button
+  mat-icon-button
+  matTooltip="Agregar"
+  *ngIf="!onCreateView && !showGraphs"
+  (click)="onCreate()"
+>
+  <mat-icon>add_circle</mat-icon>
+</button>
+<!-- BUTTON 'ACTUALIZAR' -->
+<button
+  [matTooltip]="'Actualizado ' + lastConsult"
+  mat-icon-button
+  (click)="update()"
+  *ngIf="!onCreateView"
+>
+  <mat-icon>refresh</mat-icon>
+</button>
+<!-- INPUT 'GENERAR REPORTE' -->
+<mat-datepicker-toggle
+  class="black"
+  [hidden]="onCreateView"
+  matTooltip="Seleccionar Rango Reporte"
+  [for]="picker"
+></mat-datepicker-toggle>
+<mat-form-field class="d-none">
+  <mat-label>Rango Fecha del Reporte</mat-label>
+  <mat-date-range-input [rangePicker]="picker">
+    <input matStartDate placeholder="Inicio" [(ngModel)]="inicioReporte" />
+    <input matEndDate placeholder="Final" [(ngModel)]="finalReporte" />
+  </mat-date-range-input>
+  <mat-date-range-picker (closed)="onFilterByRange()" #picker></mat-date-range-picker>
+</mat-form-field>
+<button
+  matTooltip="Lista Completa"
+  *ngIf="!isOldData"
+  mat-icon-button
+  (click)="getOldData()"
+>
+  <mat-icon>reply_all</mat-icon>
+</button>
+<!-- TABLA -->
+<div>
+  <eda-datatable
+    [hidden]="onCreateView || showGraphs"
+    [displayedColumns]="displayedColumns"
+    [columnNames]="columnNames"
+    [hasFooterRow]="false"
+    [hasRefreshButton]="false"
+    [hasExportExcelButton]="true"
+    nameExcel="gestionCartera"
+    [loading]="loadingTable"
+    columnResalted="OID"
+    rowTooltip="OBSERVACION"
+    [hasSelectableRows]="true"
+    [rowWidthsInPx]="[60, 80, 210, 290, 190, 200, 80]"
+    [rowsHasSubcontent]="['RESPTERC']"
+    [rowsSubcontent]="[{ title: 'Telefono', row: 'TELEFTERC' }]"
+    (selectRow)="onSelectRow($event)"
+  >
+  </eda-datatable>
+</div>
+<!-- FORMULARIO DE CONSULTA -->
+<button
+  *ngIf="onCreateView"
+  matTooltip="Volver"
+  class="margin-left-10"
+  mat-icon-button
+  (click)="backToTable()"
+>
+  <mat-icon>arrow_back</mat-icon>
+</button>
+<div style="margin-top: -40px">
+  <eda-box-form
+    *ngIf="onCreateView"
+    name="Gestión de Cartera"
+    [description]="description"
+    predefinedGrid="medium"
+    [button]="textBtnForm"
+    [hasResetButton]="resetBtn"
+    [formGroup]="myForm"
+    (submit)="create ? onSubmit() : onUpdateGestion()"
+  >
+    <div class="row align-center">
+      <div class="col-12 col-sm-12">
+        <eda-date-field label="Fecha" formControlName="FECHA"> </eda-date-field>
+      </div>
+      <div class="col-12 col-sm-6">
+        <eda-text-field label="Nit" formControlName="nit" (change)="onChangeNit()">
+        </eda-text-field>
+      </div>
+      <div class="col-12 col-sm-6">
+        <eda-text-field label="Erp" formControlName="erp"> </eda-text-field>
+      </div>
+      <div class="col-12 col-sm-6">
+        <eda-text-field label="Telefono ERP" formControlName="TELEFTERC">
+        </eda-text-field>
+      </div>
+      <div class="col-12 col-sm-6">
+        <eda-text-field label="Responsable ERP" formControlName="RESPTERC">
+        </eda-text-field>
+      </div>
+      <div class="col-12 col-sm-6">
+        <eda-select-field
+          label="Motivo LLamada"
+          formControlName="MOTLLAMAD"
+          [suggestions]="visitaCobroSuggestions"
+        >
+        </eda-select-field>
+      </div>
+      <div class="col-12 col-sm-6" [hidden]="!fechaConciliacion">
+        <eda-date-field label="Fecha de Conciliación" formControlName="FECHCONCI">
+        </eda-date-field>
+      </div>
+      <div class="col-12 col-sm-12">
+        <section class="text-align-left margin-bottom-10">
+          <label class="tipconlab">Tipo de Conciliación *</label><br />
+          <mat-radio-group formControlName="TIPCONCI">
+            <mat-radio-button value="CARTERA">Cartera</mat-radio-button><br />
+            <mat-radio-button value="GLOSAS">Glosas</mat-radio-button>
+          </mat-radio-group>
+        </section>
+      </div>
+      <div class="col-12 col-sm-12">
+        <textarea
+          class="observaciones-ta font-size-18 bodycommerce"
+          formControlName="OBSERVACION"
+          placeholder="Observaciones"
+        ></textarea>
+      </div>
+    </div>
+  </eda-box-form>
+</div>
+<!-- GRAFICAS -->
+<div *ngIf="showGraphs">
+  <div class="row">
+    <div class="col-12 col-sm-6">
+      <div class="margin-top-5 margin-bottom-20">
+        <donut-chartjs
+          description="Llamadas del Usuario"
+          [data]="llamadasUsuarioData"
+          *ngIf="showGraphs02"
+        >
+        </donut-chartjs>
+        <br />
+        <donut-chartjs
+          description="Llamadas Totales"
+          [data]="llamadasTotalData"
+          *ngIf="canSeeGraphics && showGraphs01"
+        >
+        </donut-chartjs>
+      </div>
+    </div>
+    <div class="col-12 col-sm-6">
+      <eda-card [hasTopLine]="false" *ngFor="let nav of llamadasPorUsuarioData">
+        <span class="bolder titlecommerce">{{ nav.NOMBRE }}</span>
+        <mat-divider></mat-divider>
+        <div class="row bodycommerce" *ngFor="let item of nav.LLAMADAS">
+          <div class="col-6">
+            <span>{{ item.MOTLLAMAD }}</span>
+          </div>
+          <div class="col-6">
+            <span>{{ item.CANTIDAD }} Gestión(es)</span>
+          </div>
+        </div>
+      </eda-card>
+    </div>
+  </div>
+  <eda-progress-bar *ngIf="loading"></eda-progress-bar>
+</div>

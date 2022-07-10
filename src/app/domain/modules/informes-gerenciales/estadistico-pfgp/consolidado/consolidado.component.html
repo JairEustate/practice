@@ -1,0 +1,111 @@
+<!-- TITULO DE LA TABLA -->
+<div class="bg-white table-title">
+  <mat-slide-toggle
+    *ngIf="visualizeContratos"
+    [matTooltip]="CheckTitle"
+    color="primary"
+    [formControl]="visualizeAgrupadores"
+  ></mat-slide-toggle>
+  <b class="margin-horizontal-10">{{ tableTitle }}</b>
+</div>
+<!-- HEADER DE LA TABLA -->
+<div class="table-header row no-padding">
+  <div class="left col-12 col-sm-6">
+    <!-- BUTTON 'ACTUALIZAR' -->
+    <button
+      *ngIf="visualizeContratos"
+      mat-icon-button
+      matTooltip="Actualizar"
+      (click)="getContratos()"
+    >
+      <mat-icon>refresh</mat-icon>
+    </button>
+    <!-- BUTTON 'VOLVER' -->
+    <button
+      *ngIf="!visualizeContratos"
+      mat-icon-button
+      matTooltip="Volver"
+      (click)="backToContratos()"
+    >
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <!-- BUTTON 'GENERAR REPORTE' -->
+    <button class="export-excel-button" mat-icon-button matTooltip="Generar Reporte">
+      <img src="assets/images/icons/export-excel.png" (click)="onExportExcel()" />
+    </button>
+    <!-- INPUT 'SEARCH' -->
+    <eda-filter-field (event)="applyFilter($event)"></eda-filter-field>
+  </div>
+  <div class="col-12 col-sm-6">
+    <mat-paginator
+      class="paginator titlecommerce"
+      [length]="dataSource.length"
+      [pageSizeOptions]="[30]"
+      showFirstLastButtons
+      [hidePageSize]="true"
+    >
+    </mat-paginator>
+  </div>
+</div>
+<!-- TABLA -->
+<div class="table-container elevation-standard">
+  <table class="table" mat-table [dataSource]="!loading ? dataSource : []" matSort>
+    <ng-container
+      *ngFor="let table of displayedColumns; let i = index"
+      [matColumnDef]="displayedColumns[i]"
+    >
+      <!-- TITULOS DE LAS COLUMNAS -->
+      <th class="th" *matHeaderCellDef mat-header-cell mat-sort-header>
+        {{ columnsNames[i] }}
+      </th>
+      <th>
+        <!-- CELDAS DE LA TABLA -->
+      </th>
+
+      <td
+        class="td"
+        *matCellDef="let element"
+        mat-cell
+        [style.width.px]="rowWidthsInPx[i]"
+        [style.min-width.px]="rowWidthsInPx[i]"
+      >
+        <div
+          [ngClass]="{
+            bolder: ['Paciente', 'Contrato', 'Ejecutado %'].indexOf(columnsNames[i]) >= 0,
+            green: ([element, displayedColumns[i]] | tableValueToCompare) == 'green',
+            yellow: ([element, displayedColumns[i]] | tableValueToCompare) == 'yellow',
+            orange: ([element, displayedColumns[i]] | tableValueToCompare) == 'orange',
+            red: ([element, displayedColumns[i]] | tableValueToCompare) == 'red'
+          }"
+        >
+          {{ element[displayedColumns[i]] | tableTransfromValue: displayedColumns[i] }}
+        </div>
+      </td>
+      <!-- FOOTER DE LA TABLA -->
+      <td class="bolder font-size-12" mat-footer-cell *matFooterCellDef>
+        <div *ngIf="['NContrato', 'Agrupador'].indexOf(displayedColumns[i]) >= 0">
+          TOTAL
+        </div>
+        <div>
+          {{ displayedColumns[i] | SumTableValues: dataSource.filteredData }}
+        </div>
+      </td>
+    </ng-container>
+    <!-- FILAS DE LA TABLA -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr
+      mat-row
+      class="unlined-row height-20"
+      [class.selectable-row]="visualizeContratos || visualizePacientes"
+      (click)="visualizeContratos && !visualizeAgrupadores.value ? getPacientes(row) : ''"
+      (click)="
+        visualizeContratos && visualizeAgrupadores.value ? getAgrupadores(row) : ''
+      "
+      (click)="visualizePacientes ? getServiciosPaciente(row) : ''"
+      *matRowDef="let row; columns: displayedColumns"
+    ></tr>
+    <tr [class.d-none]="loading" mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+  </table>
+  <mat-spinner class="table-loading-spinner" *ngIf="loading"></mat-spinner>
+</div>
+<!-- FIN TABLA -->

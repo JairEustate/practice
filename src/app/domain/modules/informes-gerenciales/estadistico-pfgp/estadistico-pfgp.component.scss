@@ -1,0 +1,117 @@
+.top {
+  display: flex;
+  flex: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  & > .left {
+    margin-bottom: 10px;
+    & > button span {
+      font-weight: bolder;
+      margin-left: 5px;
+    }
+    & > span {
+      font-weight: bolder;
+      margin-left: 10px;
+      font-size: 18px;
+    }
+  }
+  & > .right {
+    margin-bottom: 10px;
+    & > .container {
+      min-width: 300px;
+      font-weight: bolder;
+    }
+  }
+}
+.text-palette {
+  &-bottom {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+  &-top {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+  }
+  padding: 6px;
+  text-align: center;
+}
+.table {
+  width: 100%;
+  overflow-x: auto;
+  font-family: 'bodycommerce';
+  &-title {
+    padding-left: 10px;
+    padding-top: 10px;
+  }
+  &-header {
+    background: var(--light-color);
+    margin-left: 0px;
+    margin-right: 0px;
+    .left {
+      display: flex;
+      align-items: center;
+      padding-left: 10px;
+      white-space: nowrap;
+    }
+    .table-button {
+      margin-top: 15px;
+      float: left;
+    }
+    .filter-field {
+      margin-left: 10px;
+      max-width: 200px;
+    }
+  }
+  &-container {
+    width: 100%;
+    overflow: auto;
+    max-height: calc(100vh - 330px);
+  }
+  &-loading-spinner {
+    margin: auto;
+  }
+}
+.paginator {
+  background: #ffffff;
+  width: 100%;
+  float: right;
+  font-family: 'bodycommerce';
+}
+.th {
+  font-weight: bolder;
+  color: black;
+}
+.td {
+  text-align: left;
+  font-size: 12px;
+  line-height: 18px;
+  min-width: 100px;
+}
+.unlined-row .mat-cell {
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+}
+.selectable-row .mat-cell {
+  cursor: pointer;
+}
+.selectable-row:hover .mat-cell {
+  background: rgba(204, 204, 204, 0.4);
+  transition: ease 0.3s;
+}
+.elevation-standard {
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+.margin-horizontal-10 {
+  margin: 0 10px 0 10px;
+}
+.height-20 {
+  height: 20px !important;
+}
+.bolder {
+  font-weight: bolder;
+}
+.export-excel-button {
+  & img {
+    width: 32px;
+  }
+}
